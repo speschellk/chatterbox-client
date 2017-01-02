@@ -26,10 +26,6 @@ body {
     font-style:italic;
 }
 
-#main ul {
-    padding-left: 20px;
-}
-
 #main .error {
     border: 1px solid red;
     background: #FDEFF0;
@@ -87,4 +83,41 @@ form input[type=text] {
     color: #fff;
     background-color: #0090da;
 }
+
+#roomSelect form {
+    display: inline;
+}
+
+#chats {
+    list-style-type: none;
+    padding-left: 0px;
+    padding-right: 0px;
+    border: none;
+}
+
+#chats li {
+    background-color: #eee;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+
+#chats h4, #chats p {
+    margin: 0;
+}
+
+#chats {
+    padding-top: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 

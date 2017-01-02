@@ -27,8 +27,30 @@
   <body>
     <div id="main">
       <h1>chatterbox</h1>
-      <!-- Your HTML goes here! -->
+      <div id='roomSelect'>
+        <span>Room: </span>
+        <form>
+          <select name="rooms">
+            <option value="home">Home</option>
+          </select>
+        </form>
+      </div>
+      <div class="message-input">
+        <form>
+          <input type="text" name="message">
+          <input type="submit">
+        </form>
+      </div>
+      <ul id="chats">
+        <li>
+          <h4>Magee:</h4>
+          <p>hehehe</p>
+        </li>
+        <li>
+          <h4>Magee:</h4>
+          <p>hehehe</p>
+        </li>
+      </ul>
     </div>
-    <div id="chats"></div>
   </body>
 </html>
