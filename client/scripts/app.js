@@ -1,4 +1,5 @@
-var App = function() {
+var App = function(server) {
+  this.server = server;
 };
 
 App.prototype.init = function() {
@@ -7,7 +8,7 @@ App.prototype.init = function() {
 
 App.prototype.send = function(message) {
   $.ajax({
-    url: 'https://api.parse.com/1/classes/messages',
+    url: this.server,
     type: 'POST',
     data: JSON.stringify(message),
     contentType: 'application/json; charset=utf-8',
@@ -19,7 +20,15 @@ App.prototype.send = function(message) {
 };
 
 App.prototype.fetch = function() {
-
+  $.ajax({
+    url: this.server,
+    type: 'GET',
+    contentType: 'application/json; charset=utf-8',
+    dataType: 'json',
+    success: function(data) {
+      console.log('Returned data!', data);
+    }
+  });
 };
 
 App.prototype.clearMessages = function() {
@@ -44,4 +53,4 @@ App.prototype.renderRoom = function(room) {
 
 };
 
-var app = new App();
+var app = new App('https://api.parse.com/1/classes/messages');
