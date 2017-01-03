@@ -109,8 +109,22 @@ form input[type=text] {
     padding-top: 0;
 }
 
+.friended {
+    font-weight: 800;
+    color: black;
+    text-decoration: none;
+}
 
+.username {
+    color: black;
+    text-decoration: none;   
+}
 
+.friended:hover, .username:hover,
+.friended:focus, .username:focus {
+    cursor: pointer;
+    text-decoration: underline;
+}
 
 
 

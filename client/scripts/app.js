@@ -1,8 +1,10 @@
 var App = function(server) {
   this.server = server;
+  this.friends = [];
 };
 
 App.prototype.init = function() {
+  app.clearMessages();
   app.fetch();
 };
 
@@ -45,8 +47,8 @@ App.prototype.clearMessages = function() {
 App.prototype.renderMessage = function(username, text) {
   $('#chats').prepend(
     `<li>
-      <h4>${username}:</h4>
-      <p>${text}</p>
+      <a href="#" class="username" data-username="${username}">${username}:</a>
+      <p class="chatter">${text}</p>
     </li>`
   );
 };
