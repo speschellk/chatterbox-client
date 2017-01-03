@@ -68,7 +68,6 @@ App.prototype.handleSubmit = function() {
 };
 
 App.prototype.handleUsernameClick = function() {
-
 };
 
 var app = new App('https://api.parse.com/1/classes/messages');
