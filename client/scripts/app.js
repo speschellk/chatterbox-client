@@ -3,7 +3,7 @@ var App = function(server) {
 };
 
 App.prototype.init = function() {
-
+  app.fetch();
 };
 
 App.prototype.send = function(message) {
@@ -17,7 +17,6 @@ App.prototype.send = function(message) {
       console.log('Great success!', message);  
     }
   });
-
 };
 
 App.prototype.fetch = function() {
@@ -54,9 +53,33 @@ App.prototype.renderMessage = function(username, text) {
 
 App.prototype.renderRoom = function(room) {
   $('#roomSelect').append(
-    `<option>${room}</option>
-    `
+    `<option>${room}</option>`
   );
 };
 
+App.prototype.handleSubmit = function() {
+  var time = new Date();
+  var message = {
+    username: window.location.search.slice(10),
+    text: $('.message-input input').val(),
+    roomname: $('#roomSelect select option:selected').text()
+  };
+  app.send(message);
+};
+
+App.prototype.handleUsernameClick = function() {
+
+};
+
 var app = new App('https://api.parse.com/1/classes/messages');
+
+
+
+
+
+
+
+
+
+
+
