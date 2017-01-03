@@ -23,23 +23,21 @@
     <!-- your scripts -->
     <script src="env/config.js"></script>
     <script src="scripts/app.js"></script>
+    <script src="scripts/events.js"></script>
   </head>
   <body>
     <div id="main">
       <h1>chatterbox</h1>
       <div id='roomSelect'>
         <span>Room: </span>
-        <form>
-          <select name="rooms">
-            <option value="home">Home</option>
-          </select>
-        </form>
+        <select name="rooms">
+          <option value="home">Home</option>
+          <option value="home">New Room</option>
+        </select>
       </div>
       <div class="message-input">
-        <form>
-          <input type="text" name="message">
-          <input type="submit">
-        </form>
+        <input type="text" name="message">
+        <button>Submit</button>
       </div>
       <ul id="chats">
         <li>
