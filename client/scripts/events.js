@@ -42,4 +42,51 @@ $(document).ready(function() {
     console.log(selected);
   });
 
+  // Add a room to dropdown when click new room
+  $('.create-room').on('click', function() {
+    $(this).addClass('hidden');
+    $('.create-room-input').removeClass('hidden');
+  });
+
+  $('.room-btn').on('click', function() {
+    var newRoom = $('.create-room-input input').val();
+    app.renderRoom(newRoom);
+
+    // Hide input box and submit button
+    $('.create-room-input').addClass('hidden');
+    // Show create new room link again
+    $('.create-room').removeClass('hidden');
+  });
+
+
+
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

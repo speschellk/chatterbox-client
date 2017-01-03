@@ -126,10 +126,18 @@ form input[type=text] {
     text-decoration: underline;
 }
 
+.create-room {
+    margin-left: 5px;
+    display: inline;
+}
 
+.hidden {
+    display: none!important;
+}
 
-
-
+.create-room-input {
+    display: inline;
+}
 
 
 
