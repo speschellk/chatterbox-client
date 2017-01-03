@@ -26,30 +26,24 @@ App.prototype.fetch = function() {
     type: 'GET',
     contentType: 'application/json; charset=utf-8',
     dataType: 'json',
-    data: {'order': '-createdAt'},
+    // come back and add limit
+    data: {'order': '-createdAt', 'limit': '10'},
     success: function(data) {
-      for (var i = 0; i < 10; i++) {
+      for (var i = 0; i < data.results.length; i++) {
         var username = data.results[i].username;
         var text = data.results[i].text;
-        // var createdAt = data.results[i].
-        console.log('Returned text', data.results[i]);
-        console.log('username', username);
-        console.log('text', text);
         app.renderMessage(username, text);
       }
+      console.log('data', data);
     }
   });
 };
 
 App.prototype.clearMessages = function() {
-
+  $('#chats').empty();
 };
 
 App.prototype.renderMessage = function(username, text) {
-  console.log('called renderMessage');
-    // append the message to the DOM
-      // grab the unordered list
-      // append a new li element with message
   $('#chats').prepend(
     `<li>
       <h4>${username}:</h4>
@@ -59,7 +53,10 @@ App.prototype.renderMessage = function(username, text) {
 };
 
 App.prototype.renderRoom = function(room) {
-
+  $('#roomSelect').append(
+    `<option>${room}</option>
+    `
+  );
 };
 
 var app = new App('https://api.parse.com/1/classes/messages');
