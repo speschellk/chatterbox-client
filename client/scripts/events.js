@@ -30,4 +30,16 @@ $(document).ready(function() {
     }
   });
 
+
+  // Create an event on 'change' that triggers when dropdown is updated
+  $('#roomSelect').on('change', function() {
+    var selected = this.value;
+    // Clear messages
+    app.clearMessages();
+    // Reload filtered messages
+
+    app.fetch({'order': '-createdAt', 'limit': '10', 'where': '{"roomname": "' + selected + '"}'});
+    console.log(selected);
+  });
+
 });

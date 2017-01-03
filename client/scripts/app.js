@@ -5,7 +5,9 @@ var App = function(server) {
 
 App.prototype.init = function() {
   app.clearMessages();
-  app.fetch();
+  // Load page with latest 10 chatters
+  var onLoadData = {'order': '-createdAt', 'limit': '10'};
+  app.fetch(onLoadData);
 };
 
 App.prototype.send = function(message) {
@@ -21,14 +23,14 @@ App.prototype.send = function(message) {
   });
 };
 
-App.prototype.fetch = function() {
+App.prototype.fetch = function(filter) {
   $.ajax({
     url: this.server,
     type: 'GET',
     contentType: 'application/json; charset=utf-8',
     dataType: 'json',
     // come back and add limit
-    data: {'order': '-createdAt', 'limit': '10'},
+    data: filter,
     success: function(data) {
       for (var i = 0; i < data.results.length; i++) {
         var username = data.results[i].username;
@@ -60,7 +62,7 @@ App.prototype.renderRoom = function(room) {
 };
 
 App.prototype.handleSubmit = function() {
-  var time = new Date();
+  // var time = new Date();
   var message = {
     username: window.location.search.slice(10),
     text: $('.message-input input').val(),
