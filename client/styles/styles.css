@@ -148,6 +148,15 @@ form input[type=text] {
     display: inline;
 }
 
+.message-input input {
+    display: inline;
+    height: 20px;
+    width: 440px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    margin-right: 5px;  
+}
+
 
 
 
