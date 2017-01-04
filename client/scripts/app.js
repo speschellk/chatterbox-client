@@ -97,6 +97,8 @@ App.prototype.handleSubmit = function() {
     roomname: $('#roomSelect option:selected').text()
   };
   app.send(message);
+  // Clear text input
+  $('.message-input input').val('');
 
   // Clear messages
   app.clearMessages();
