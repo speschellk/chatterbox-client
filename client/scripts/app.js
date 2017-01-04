@@ -1,8 +1,10 @@
+// Constructor for an app object
 var App = function(server) {
   this.server = server;
   this.friends = [];
 };
 
+// Instantiate the app and load 10 most recent messages
 App.prototype.init = function() {
   app.clearMessages();
   // Load page with latest 10 chatters
@@ -10,6 +12,7 @@ App.prototype.init = function() {
   app.fetch(onLoadData);
 };
 
+// Send user message to server
 App.prototype.send = function(message) {
   $.ajax({
     url: this.server,
@@ -23,6 +26,7 @@ App.prototype.send = function(message) {
   });
 };
 
+// Fetch user messages from the server
 App.prototype.fetch = function(filter) {
   $.ajax({
     url: this.server,
@@ -43,13 +47,11 @@ App.prototype.fetch = function(filter) {
         // Render message to the page
         app.renderMessage(username, text);
       }
-      console.log('data', data);
     }
   });
 };
 
-
-
+// Encode messages to prevent XSS
 App.prototype.htmlEncode = function(str) {
   var i = str.length;
   var aRet = [];
@@ -65,11 +67,13 @@ App.prototype.htmlEncode = function(str) {
   return aRet.join('');    
 };
 
+// Clear messages from the room
 App.prototype.clearMessages = function() {
   $('#chats').empty();
 };
 
-App.prototype.renderMessage = function(username, text) {
+// Post a message to the room
+App.prototype.renderMessage = (username, text) => {
   $('#chats').append(
     `<li>
       <a href="#" class="username" data-username="${username}">${username}:</a>
@@ -78,12 +82,14 @@ App.prototype.renderMessage = function(username, text) {
   );
 };
 
+// Add a new room
 App.prototype.renderRoom = function(room) {
   $('#roomSelect').append(
     `<option>${room}</option>`
   );
 };
 
+// Call send method and fetch new message when user clicks send button
 App.prototype.handleSubmit = function() {
   var message = {
     username: window.location.search.slice(10),
@@ -98,7 +104,9 @@ App.prototype.handleSubmit = function() {
   app.fetch({'order': '-createdAt', 'limit': '10', 'where': '{"roomname": "' + message.roomname + '"}'});
 };
 
+// Post success message when username clicked
 App.prototype.handleUsernameClick = function() {
+  console.log('You made a friend!');
 };
 
 var app = new App('https://api.parse.com/1/classes/messages');

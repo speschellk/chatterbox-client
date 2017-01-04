@@ -8,7 +8,7 @@ $(document).ready(function() {
     app.handleSubmit();
   });
 
-  // ADDING FRIENDS
+  // ADD FRIENDS
   // When click username
   $('#chats').on('click', 'a', function(event) {
     event.preventDefault();
@@ -30,7 +30,7 @@ $(document).ready(function() {
     }
   });
 
-  // SWITCHING ROOMS
+  // SWITCH ROOMS
   // Create an event on 'change' that triggers when dropdown is updated
   $('#roomSelect').on('change', function() {
     var selected = this.value;
@@ -40,7 +40,7 @@ $(document).ready(function() {
     app.fetch({'order': '-createdAt', 'limit': '10', 'where': '{"roomname": "' + selected + '"}'});
   });
 
-  // ADDING NEW ROOM
+  // ADD NEW ROOM
   // Add a room to dropdown when click new room
   $('.create-room').on('click', function() {
     $(this).addClass('hidden');
