@@ -35,6 +35,12 @@ App.prototype.fetch = function(filter) {
       for (var i = 0; i < data.results.length; i++) {
         var username = data.results[i].username;
         var text = data.results[i].text;
+
+        // Encode username and text
+        username = app.htmlEncode(username);
+        text = app.htmlEncode(text);
+        
+        // Render message to the page
         app.renderMessage(username, text);
       }
       console.log('data', data);
@@ -42,12 +48,29 @@ App.prototype.fetch = function(filter) {
   });
 };
 
+
+
+App.prototype.htmlEncode = function(str) {
+  var i = str.length;
+  var aRet = [];
+
+  while (i--) {
+    var iC = str[i].charCodeAt();
+    if (iC < 65 || iC > 127 || (iC > 90 && iC < 97)) {
+      aRet[i] = '&#' + iC + ';';
+    } else {
+      aRet[i] = str[i];
+    }
+  }
+  return aRet.join('');    
+};
+
 App.prototype.clearMessages = function() {
   $('#chats').empty();
 };
 
 App.prototype.renderMessage = function(username, text) {
-  $('#chats').prepend(
+  $('#chats').append(
     `<li>
       <a href="#" class="username" data-username="${username}">${username}:</a>
       <p class="chatter">${text}</p>
@@ -62,20 +85,23 @@ App.prototype.renderRoom = function(room) {
 };
 
 App.prototype.handleSubmit = function() {
-  // var time = new Date();
   var message = {
     username: window.location.search.slice(10),
     text: $('.message-input input').val(),
-    roomname: $('#roomSelect select option:selected').text()
+    roomname: $('#roomSelect option:selected').text()
   };
   app.send(message);
+
+  // Clear messages
+  app.clearMessages();
+  // Reload filtered messages
+  app.fetch({'order': '-createdAt', 'limit': '10', 'where': '{"roomname": "' + message.roomname + '"}'});
 };
 
 App.prototype.handleUsernameClick = function() {
 };
 
 var app = new App('https://api.parse.com/1/classes/messages');
-
 
 
 

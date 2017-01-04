@@ -2,13 +2,13 @@ $(document).ready(function() {
   // Load initial messages
   app.init();
 
-  // CLICK HANDLERS
+  // ADD NEW MESSAGE
   // Create message object upon click of submit button
   $('button').on('click', function() {
     app.handleSubmit();
   });
 
-  // Adding Friends
+  // ADDING FRIENDS
   // When click username
   $('#chats').on('click', 'a', function(event) {
     event.preventDefault();
@@ -30,18 +30,17 @@ $(document).ready(function() {
     }
   });
 
-
+  // SWITCHING ROOMS
   // Create an event on 'change' that triggers when dropdown is updated
   $('#roomSelect').on('change', function() {
     var selected = this.value;
     // Clear messages
     app.clearMessages();
     // Reload filtered messages
-
     app.fetch({'order': '-createdAt', 'limit': '10', 'where': '{"roomname": "' + selected + '"}'});
-    console.log(selected);
   });
 
+  // ADDING NEW ROOM
   // Add a room to dropdown when click new room
   $('.create-room').on('click', function() {
     $(this).addClass('hidden');
